@@ -10,9 +10,10 @@ jobs:
         channel: 1.23/stable
         ubuntu-pro-token: ${{ secrets.UBUNTU_PRO_TOKEN }}
         
-    - name: Authenticate with Anbox Cloud
+    - name: Set up Anbox Cloud token
       run: |
-        amc login --token ${{ secrets.ANBOX_CLOUD_TOKEN }}
+        echo "Setting up Anbox Cloud token"
+        export ANBOX_CLOUD_TOKEN=${{ secrets.ANBOX_CLOUD_TOKEN }}
 
     - name: List current directory
       run: |
