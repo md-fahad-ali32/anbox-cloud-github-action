@@ -10,6 +10,19 @@ jobs:
         channel: 1.23/stable
         ubuntu-pro-token: ${{ secrets.UBUNTU_PRO_TOKEN }}
         
+    - name: Authenticate with Anbox Cloud
+      run: |
+        amc login --token ${{ secrets.ANBOX_CLOUD_TOKEN }}
+
+    - name: List current directory
+      run: |
+        pwd
+        ls -l ./images/
+
+    - name: Add Android image
+      run: |
+        amc image add jammy:android13:amd64 ./images/android13.tar.xz
+
     - name: Create Android instance
       id: create-instance
       run: |
