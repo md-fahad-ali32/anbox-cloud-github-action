@@ -27,4 +27,9 @@ jobs:
         
     - name: Run tests
       run: |
-        test "$(adb shell getprop ro.product.model)" = Anbox
+        model="$(adb shell getprop ro.product.model)"
+        echo "Detected model: $model"
+        if [ "$model" != "Anbox" ]; then
+          echo "Test failed: Expected model 'Anbox', got '$model'"
+          exit 1
+        fi
